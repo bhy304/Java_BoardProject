@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+/* reset */ 
+* {margin: 0; padding: 0;}
+a {color: #fff; text-decoration: none;}
+
+/* 폰트 초기화 */
+body {font-family: 'Nanum Gothic', sans-serif; color: #222; font-size: 15px; line-height: 1.5;}
+
+/* header */
+#header {padding: 60px;  text-align: center; background: #999;}
+#header .logo {float:left; width:250px; }
+#header .logo a {padding: 14px 16px;display: inline-block; font-size: 25px; } 
+#header .nav{float:right; width:600px; margin-top: 10px;}
+#header .nav li {float: left; width: 25%; text-align: center; list-style: none;}
+#header .nav li a {padding: 10px; display: block; font-size: 20px;}
+#header .nav li a:hover {}
+
+/* 로그인 폼 */
+#login_container {position: relative;  overflow: hidden; width: 700px; height: 500px; margin: 300px auto 0;padding: 0; width: 450px;} 
+#login_container .login_form {background-color: #f1f1f1;}
+#login_container .login_form  input {width: 100%; padding: 12px 20px; margin: 8px 0; display: inline-block; border: 1px solid #ccc; box-sizing: border-box;}
+#login_container .login_form  button {width: 100%;background-color: rgb(34, 8, 107);color: white;padding: 14px 20px;margin: 8px 0;border: none;}
+
+/* 회원가입 */
+#join_container {position: relative;  overflow: hidden; height: 800px; margin: 150px auto 0; padding: 0; width: 450px;}
+#join_container .join_form {background: #f8f8f8;}
+#join_container .join_form input {width: 100%; padding: 10px 20px; margin: 10px auto; display: inline-block; border: 1px solid #ccc; box-sizing: border-box;}
+#join_container .join_form button {width: 100%; background-color: rgb(34, 8, 107); color: white; padding: 14px 20px; margin: 8px 0; border: none;}
+    
