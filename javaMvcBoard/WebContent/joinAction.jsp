@@ -12,9 +12,22 @@
 </head>
 <body>
 <%
+	request.setCharacterEncoding("UTF-8");
+	
+	String userID = null;
+	if (session.getAttribute("userID") != null) {
+		userID = (String) session.getAttribute("userID");
+	}
+	if (userID != null) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('이미 로그인이 되어있습니다.')");
+		script.println("location.href='main.jsp'");
+		script.println("</script>");
+	}
 
 	userDAO dao = userDAO.getInstance();
-	if(dao.confirmID(dto.getUserID())==userDAO.MEMBER_EXISTENT){
+	if(dao.confirmID(dto.getUserID()) == userDAO.MEMBER_EXISTENT){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('이미 존재하는 아이디입니다.')");
@@ -23,7 +36,9 @@
 	} else {
 		int result = dao.join(dto);
 		if(result == userDAO.MEMBER_JOIN_SUCCESS) {
-			session.setAttribute("id", dto.getUserID());
+			String ID = dto.getUserID();
+			session.setAttribute("userID", ID);
+			
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('회원 가입을 축하합니다.')");
@@ -37,30 +52,7 @@
 			script.println("</script>");
 		}
 	}
-	/* userDAO dao = new userDAO();
-	
-	int result = dao.join(user);
-	
-	if(user.getUserID() == null || user.getUserPassword() == null || user.getUserName()==null || user.getUserGender()==null || user.getUserEmail() == null) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('입력이 안 된 사항이 있습니다.')");
-		script.println("history.back()");
-		script.println("</script>");
-	} else {
-		if (result == -1) { 
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('이미 존재하는 아이디입니다..')");
-			script.println("history.back()");
-			script.println("</script>");
-		} else {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("location.href='main.jsp'");
-			script.println("</script>");
-		}
-	} */
+
 %>
 </body>
 </html>

@@ -10,7 +10,7 @@
 <body>
 
 <header id="header">
-	<h1 class="logo"><a href="login.jsp">JSP 게시판 웹사이트</a></h1>
+	<h1 class="logo"><a href="main.jsp">JSP 게시판 웹사이트</a></h1>
 	<nav class="nav">
 		<ul>
 			<li><a href="main.jsp">메뉴</a></li>

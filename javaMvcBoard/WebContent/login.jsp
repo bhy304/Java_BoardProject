@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -20,12 +19,12 @@
         <form class="login_form" action="loginAction.jsp" method="POST">
             
                 <label for="userId"><b>아이디</b></label>
-                <input type="text" id="userID" name="userID" placeholder="Enter UserID">
+                <input type="text" id="userID" name="userID" placeholder="Enter UserID" value="<% if(session.getAttribute("userID")!=null) out.println(session.getAttribute("userID")); %>">
 
                 <label for="userPassword"><b>비밀번호</b></label>
                 <input type="password" id="userPassword" name="userPassword" placeholder="Enter UserPassword">
 
-                <button type="submit">Login</button>
+                <button type="submit">Login</button>&nbsp;<button type="button" onclick="javascript:window.location='join.jsp'">Join</button>
         </form>
     </div>
 </body>

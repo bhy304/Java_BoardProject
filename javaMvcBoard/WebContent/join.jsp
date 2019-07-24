@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% if(session.getAttribute("Valid") != null) { %>
+<jsp:forward page="main.jsp"></jsp:forward>
+<%} %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -20,20 +22,20 @@
         <br>
         <form class="join_form" action="joinAction.jsp" method="post">
             <label for="userId"><b>아이디</b></label>
-            <input type="text" id="userID" name="userID" placeholder="아이디" maxlength="20">
+            <input type="text" id="userID" name="userID" placeholder="아이디" maxlength="20" required="required">
             
             <label for="userId"><b>비밀번호</b></label>
             <input type="password" id="userPassword" name="userPassword" placeholder="비밀번호" maxlength="20" required="required">
             
             <label for="userId"><b>이름</b></label>
-            <input type="text" id="userName" name="userName"  placeholder="이름" maxlength="20">
+            <input type="text" id="userName" name="userName"  placeholder="이름" maxlength="20" required="required">
             
             <label for="userId"><b>성별</b></label>
             <input class="gender" type="radio" id="userGender" name="userGender" autocomplete="off" value="남자" checked>남자
             <input class="gender" type="radio" id="userGender" name="userGender" autocomplete="off" value="여자">여자<br>
             
             <label for="userId"><b>이메일</b></label>
-            <input type="email" id="userEmail" name="userEmail"  placeholder="이메일" maxlength="20">
+            <input type="email" id="userEmail" name="userEmail"  placeholder="이메일" maxlength="20" required="required">
         
             <button type="submit">Sign up</button>
         </form>
