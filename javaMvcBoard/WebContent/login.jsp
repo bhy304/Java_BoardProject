@@ -16,15 +16,15 @@
 <jsp:include page="header.jsp"></jsp:include>
 	<div id="login_container">
 	<h1>로그인 화면</h1><br>
-        <form class="login_form" action="loginAction.jsp" method="POST">
+        <form class="login_form" action="loginAction.jsp" method="post">
             
-                <label for="userId"><b>아이디</b></label>
-                <input type="text" id="userID" name="userID" placeholder="Enter UserID" value="<% if(session.getAttribute("userID")!=null) out.println(session.getAttribute("userID")); %>">
+            <label for="userId"><b>아이디</b></label>
+        	<input type="text" id="userID" name="userID" placeholder="Enter UserID" value="<% if(session.getAttribute("userID")!=null) out.println(session.getAttribute("userID")); %>">
 
-                <label for="userPassword"><b>비밀번호</b></label>
-                <input type="password" id="userPassword" name="userPassword" placeholder="Enter UserPassword">
+            <label for="userPassword"><b>비밀번호</b></label>
+            <input type="password" id="userPassword" name="userPassword" placeholder="Enter UserPassword">
 
-                <button type="submit">Login</button>&nbsp;<button type="button" onclick="javascript:window.location='join.jsp'">Join</button>
+            <button type="submit">Login</button>&nbsp;<button type="button" onclick="javascript:window.location='join.jsp'">Join</button>
         </form>
     </div>
 </body>

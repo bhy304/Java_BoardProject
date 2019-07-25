@@ -18,8 +18,7 @@ public class DBUtil {
 	public static Connection MysqlConnection() {
 		Connection conn = null;
 		String url = "jdbc:mysql://localhost:3306/board?autoReconnect=true&useSSL=false&serverTimezone=UTC";
-		String user = "root";
-		String password = "1234";
+		String user = "root", password = "1234";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -28,14 +27,9 @@ public class DBUtil {
 			System.out.println("DB 연결 완료");
 
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("SQLException: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("VendorError: " + e.getErrorCode());
+		} catch (SQLException e2) {
+			e2.printStackTrace();
 		}
 		return conn;
 	}
@@ -49,11 +43,7 @@ public class DBUtil {
 			if (conn != null)
 				conn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("SQLException: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("VendorError: " + e.getErrorCode());
-		}
+		} 
 	}
 }

@@ -10,59 +10,40 @@
 </head>
 <body>
 <% 
-	String userID = null;
-	if (session.getAttribute("userID") != null) {
-		userID = (String) session.getAttribute("userID");
-	}
-	if (userID != null) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('이미 로그인이 되어있습니다.')");
-		script.println("location.href='main.jsp'");
-		script.println("</script>");
-	}
-
 	request.setCharacterEncoding("UTF-8");
 	
 	String ID = request.getParameter("userID");
 	String PW = request.getParameter("userPassword");
 	
-	userDAO dao = userDAO.getInstance();
+	userDAO dao = userDAO.getInstance(); //인스턴스생성
+	int loginResult = dao.login(ID, PW); 
 	
-	int loginResult = dao.login(ID, PW);
-	if(loginResult == 1) {
+	if(loginResult == 1) { 
+		//로그인 성공
 		userDTO dto = dao.getUser(ID);
-		if(dto == null) {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('존재하지 않는 회원입니다.')");
-			script.println("history.back()");
-			script.println("</script>");	
-		} else {
-			String userid = dto.getUserID();
-			session.setAttribute("userID", userid);
-			session.setAttribute("ValidUser","yes");
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("location.href='main.jsp'");
-			script.println("</script>");
-		}
-	} else if (loginResult == 0) {
+		String userID = dto.getUserID();
+		session.setAttribute("userID", userID);
+		
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("location.href='main.jsp'");
+		script.println("</script>");
+
+	} else if (loginResult == 0) { 
+		//비번 틀림
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('비밀번호가 틀립니다.')");
 		script.println("history.back()");
 		script.println("</script>");
-	} else if (loginResult == -1) {
+	} else if (loginResult == -1) { 
+		//존재하지 않는 회원
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('아이디가 존재하지 않습니다.')");
 		script.println("history.back()");
 		script.println("</script>");
 	} 
-	
-	
 %>
-
 </body>
 </html>

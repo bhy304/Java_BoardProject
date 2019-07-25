@@ -33,7 +33,7 @@ public class userDAO {
 		return instance;
 	}
 	
-	// login		
+	// 로그인(아이디,비밀번호 체크)		
 	public int login(String userID, String userPassword) {
 		int result = 0;
 		String dbPassword;
@@ -55,22 +55,23 @@ public class userDAO {
 					result = userDAO.MEMBER_LOGIN_SUCCESS; //로그인 성공
 					System.out.println("로그인 성공:" + result);
 				} else {
-					result = userDAO.MEMBER_LOGIN_PW_NO_GOOD; //비번 틀림
+					result = userDAO.MEMBER_LOGIN_PW_NO_GOOD; //비밀번호 불일치
 					System.out.println("비번 틀림:" + result);
 				} 
 			} else {
-				result = userDAO.MEMBER_LOGIN_IS_NOT; //비회원
+				result = userDAO.MEMBER_LOGIN_IS_NOT; //존재하지 않는 회원
 				System.out.println("회원이 아닙니다:" + result);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println(e.toString());
+			System.out.println(e.getMessage());
 		} finally {
 			DBUtil.MysqlDisConnection(rs, pstmt, conn);
 		} return result; 
 	}
 	
-	// join
+	// 회원가입
 	public int join(userDTO user) {
 		int result = 0;
 		Connection conn = null;
@@ -83,29 +84,31 @@ public class userDAO {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, user.getUserID());
-			System.out.println(user.getUserID());
 			pstmt.setString(2, user.getUserPassword());
-			System.out.println(user.getUserPassword());
 			pstmt.setString(3, user.getUserName());
-			System.out.println(user.getUserName());
 			pstmt.setString(4, user.getUserGender());
-			System.out.println(user.getUserGender());
 			pstmt.setString(5, user.getUserEmail());
-			System.out.println(user.getUserEmail());
+		
+			System.out.println("id:" + user.getUserID() +
+							   "pw: " + user.getUserPassword() + 
+							   "name: " + user.getUserName() + 
+							   "gender: " + user.getUserGender() + 
+							   "email: " + user.getUserEmail());
 			
 			pstmt.executeUpdate();
 			
 			result = userDAO.MEMBER_LOGIN_SUCCESS;
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println(e.toString());
+			System.out.println(e.getMessage());
 		} finally {
 			DBUtil.MysqlDisConnection(null, pstmt, conn);
 		} return result;
 	}
 	
-	// confirmID
+	// 회원 확인
 	public int confirmID(String id) {
 		int result = 0;
 		Connection conn = null;
@@ -119,14 +122,15 @@ public class userDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				result = userDAO.MEMBER_EXISTENT; 
-				System.out.println("존재 회원" + result);
+				System.out.println("있는 회원" + result);
 			} else {
 				result = userDAO.MEMBER_NONEXISTENT;
 				System.out.println("없는 회원" + result);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println(e.toString());
+			System.out.println(e.getMessage());
 		} finally {
 			DBUtil.MysqlDisConnection(rs, pstmt, conn);
 		} return result;
@@ -156,8 +160,9 @@ public class userDAO {
 				dto.setUserEmail(rs.getString("userEmail"));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println(e.toString());
+			System.out.println(e.getMessage());
 		} finally {
 			DBUtil.MysqlDisConnection(rs, pstmt, conn);
 		} return dto;

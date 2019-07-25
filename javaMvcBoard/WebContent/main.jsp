@@ -12,6 +12,6 @@
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap" rel="stylesheet">	
 <body>
-
+<jsp:include page="header.jsp"></jsp:include>
 </body>
 </html>
