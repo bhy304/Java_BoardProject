@@ -2,6 +2,7 @@
 <%@page import="com.bhy.model.user.userDTO"%>
 <%@page import="com.bhy.model.user.userDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +11,6 @@
 </head>
 <body>
 <% 
-	request.setCharacterEncoding("UTF-8");
-	
 	String ID = request.getParameter("userID");
 	String PW = request.getParameter("userPassword");
 	

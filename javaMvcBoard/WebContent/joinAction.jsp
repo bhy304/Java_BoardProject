@@ -1,8 +1,9 @@
 <%@page import="java.io.PrintWriter"%>
 <%@page import="com.bhy.model.user.userDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:useBean id="dto" class="com.bhy.model.user.userDTO"></jsp:useBean>
-<jsp:setProperty property="*" name="dto"/>
+<% request.setCharacterEncoding("UTF-8"); %>
+<jsp:useBean id="dto" class="com.bhy.model.user.userDTO" scope="page"></jsp:useBean>
+<jsp:setProperty name="dto" property="*" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,9 +12,8 @@
 </head>
 <body>
 <%
-	request.setCharacterEncoding("UTF-8");
-	
 	userDAO dao = userDAO.getInstance();
+	
 	if(dao.confirmID(dto.getUserID()) == userDAO.MEMBER_EXISTENT){ // 회원 확인 
 		PrintWriter script = response.getWriter();
 		script.println("<script>");

@@ -169,4 +169,29 @@ public class userDAO {
 		
 	}
 	
+	// 회원정보 수정
+	public int updateUser(userDTO dto) {
+		int result = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "update user set userPassword= ?, userEmail= ?, userName= ?, userGender= ? where userID= ?";
+		
+		try {
+			conn = DBUtil.MysqlConnection();
+			pstmt = conn.prepareStatement(sql);
+			System.out.println(sql);
+			pstmt.setString(1, dto.getUserPassword());
+			pstmt.setString(2, dto.getUserEmail());
+			pstmt.setString(3, dto.getUserName());
+			pstmt.setString(4, dto.getUserGender());
+			pstmt.setString(5, dto.getUserID());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.MysqlDisConnection(null, pstmt, conn);
+		} return result;
+	}
 }
