@@ -7,17 +7,24 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>JSP 게시판 웹사이트</title>
 <!-- CSS Style -->
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/reset.css">
+<style>
+/* 회원가입 */
+#join_container {position: relative;  overflow: hidden; width: 450px; height: 800px; margin: 150px auto 0; padding: 0;}
+#join_container h1 {margin: 10px 0; text-align: center;}
+#join_container .join_form {background: #f8f8f8;}
+#join_container .join_form input {width: 100%; padding: 10px 20px; margin: 10px auto; display: inline-block; border: 1px solid #ccc; box-sizing: border-box;}
+#join_container .join_form button {width: 100%; background-color: rgb(34, 8, 107); color: white; padding: 14px 20px; margin: 8px 0; border: none;}
+</style>
 <!-- 웹 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap" rel="stylesheet">	
 </head>
 <body>
-<!-- 헤뉴 메뉴  -->
 <jsp:include page="header.jsp"></jsp:include>
+<!-- 헤뉴 메뉴  -->
     <div id="join_container">
         <h1>회원가입 화면</h1>
-        <br>
         <form class="join_form" action="joinAction.jsp" method="post">
             <label for="userID"><b>아이디</b></label>
             <input type="text" id="userID" name="userID" placeholder="아이디" maxlength="20" required="required">

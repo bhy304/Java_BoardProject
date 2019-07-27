@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>JSP 게시판 웹사이트</title>
 <!-- CSS Style -->
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/reset.css">
 <!-- 웹 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap" rel="stylesheet">	
@@ -17,14 +17,12 @@
 	.hello {margin: 400px auto; text-align: center;}
 </style>
 <body>
-<!-- 헤뉴 메뉴  -->
 <jsp:include page="header.jsp"></jsp:include>
-
+<!-- 헤뉴 메뉴  -->
 <c:if test="${sessionScope.userID != null }">
 	<div class="hello">
-	<h1><%=userID %>님 안녕하세요 :)</h1>
+		<h1><%=userID %>님 안녕하세요 :)</h1>
 	</div>
 </c:if>
-
 </body>
 </html>

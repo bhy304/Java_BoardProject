@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>JSP 게시판 웹사이트</title>
 <!-- CSS Style -->
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/reset.css">
 <!-- 웹 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap" rel="stylesheet">	
@@ -27,7 +27,7 @@ function go() {
 </script>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <header id="header">
-	<h1 class="logo"><a href="${path}/main.jsp">JSP 게시판</a></h1>
+	<h1 class="logo"><a href="${path}/main.jsp">board</a></h1>
 	<nav class="nav">
 		<ul>		
 			<li><a href="javascript:void(0);" onclick="go();">게시판</a></li>	

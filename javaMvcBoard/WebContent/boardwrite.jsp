@@ -7,15 +7,25 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>JSP 게시판 웹사이트</title>
 <!-- CSS Style -->
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/reset.css">
+<style>
+/* 게시판 글쓰기 */
+#write_container {position: relative;  overflow: hidden; width: 700px; height: 800px; margin: 150px auto 0; padding: 0;}
+#write_container .row {background: #f8f8f8;}
+#write_container .row table {border: 1px black; width: 100%;}
+#write_container .row table caption {font-size: 20px; table-layout: auto;}
+#write_container .row table input {width: 600px; }
+#write_container .row table textarea {width: 600px; height:350px; }
+#write_container .row .button {border: none; color:#fff; padding: 12px 16px; background-color: #1E90FF; border-radius: 10px; margin: 4px 2px; text-decoration: none;}
+
+</style>
 <!-- 웹 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap" rel="stylesheet">	
 </head>
 <body>
-<!-- 헤뉴 메뉴  -->
 <jsp:include page="header.jsp"></jsp:include>
-<body>
+<!-- 헤뉴 메뉴  -->
 <div id="write_container">
 	<div class="row">
 		<form action="boardwriteAction.jsp" method="post">

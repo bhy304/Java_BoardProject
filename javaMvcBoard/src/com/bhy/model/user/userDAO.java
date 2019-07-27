@@ -64,8 +64,6 @@ public class userDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println(e.toString());
-			System.out.println(e.getMessage());
 		} finally {
 			DBUtil.MysqlDisConnection(rs, pstmt, conn);
 		} return result; 
@@ -154,7 +152,7 @@ public class userDAO {
 			if(rs.next()) {
 				dto = new userDTO();
 				dto.setUserID(rs.getString("userID"));
-				dto.setUserPassword(rs.getString("userName"));
+				dto.setUserPassword(rs.getString("userPassword"));
 				dto.setUserName(rs.getString("userName"));
 				dto.setUserGender(rs.getString("userGender"));
 				dto.setUserEmail(rs.getString("userEmail"));
@@ -170,28 +168,34 @@ public class userDAO {
 	}
 	
 	// 회원정보 수정
-	public int updateUser(userDTO dto) {
+	public int updateUser(userDTO user) {
 		int result = 0;
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = "update user set userPassword= ?, userEmail= ?, userName= ?, userGender= ? where userID= ?";
-		
+		System.out.println(sql);
+		conn = DBUtil.MysqlConnection();
 		try {
-			conn = DBUtil.MysqlConnection();
 			pstmt = conn.prepareStatement(sql);
-			System.out.println(sql);
-			pstmt.setString(1, dto.getUserPassword());
-			pstmt.setString(2, dto.getUserEmail());
-			pstmt.setString(3, dto.getUserName());
-			pstmt.setString(4, dto.getUserGender());
-			pstmt.setString(5, dto.getUserID());
-			result = pstmt.executeUpdate();
+			
+			pstmt.setString(1, user.getUserPassword());
+			pstmt.setString(2, user.getUserEmail());
+			pstmt.setString(3, user.getUserName());
+			pstmt.setString(4, user.getUserGender());
+			pstmt.setString(5, user.getUserID());
+			System.out.println("id:" + user.getUserID() +
+					   ", pw: " + user.getUserPassword() + 
+					   ", name: " + user.getUserName() + 
+					   ", gender: " + user.getUserGender() + 
+					   ", email: " + user.getUserEmail());
+			result =  pstmt.executeUpdate();
+			System.out.println(result);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			DBUtil.MysqlDisConnection(null, pstmt, conn);
-		} return result;
+		} return -1; // 데이터베이스 오류
 	}
 }

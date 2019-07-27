@@ -7,14 +7,22 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>JSP 게시판 웹사이트</title>
 <!-- CSS Style -->
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/reset.css">
+<style>
+/* 로그인 폼 */
+#login_container {position: relative;  width: 450px; margin: 150px auto 0; padding: 0;} 
+#login_container .login_form {background-color: #f1f1f1; height: 300px;}
+#login_container .login_form  input {width: 100%; padding: 12px 20px; margin: 8px 0; display: inline-block; border: 1px solid #ccc; box-sizing: border-box;}
+#login_container .login_form  button {width: 100%; background-color: rgb(34, 8, 107); color: white; padding: 14px 20px;margin: 8px 0; border: none;}
+
+</style>
 <!-- 웹 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap" rel="stylesheet">	
 </head>
 <body>
-<!-- 헤뉴 메뉴  -->
 <jsp:include page="header.jsp"></jsp:include>
+<!-- 헤뉴 메뉴  -->
 	<div id="login_container">
 	<h1>로그인 화면</h1><br>
         <form class="login_form" action="loginAction.jsp" method="post">

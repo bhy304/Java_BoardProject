@@ -2,8 +2,8 @@
 <%@page import="com.bhy.model.user.userDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("UTF-8"); %>
-<jsp:useBean id="dto" class="com.bhy.model.user.userDTO"></jsp:useBean>
-<jsp:setProperty property="*" name="dto"/>
+<jsp:useBean id="user" class="com.bhy.model.user.userDTO"></jsp:useBean>
+<jsp:setProperty property="*" name="user"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,23 +13,26 @@
 <body>
 <%
 	String userID = (String) session.getAttribute("userID");
-	dto.setUserID(userID);
+	user.setUserID(userID);
 	
 	userDAO dao = userDAO.getInstance();
-	int result = dao.updateUser(dto);
+	int result = dao.updateUser(user);
+	
 	
 	if(result == 1) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('정보 수정되었습니다.')");
-		script.println("location.href='main.jsp'");
-		script.println("</script>");
+%>
+	<script type="text/javascript">
+		alert("정보 수정 되었습니다.");
+		document.location.href="main.jsp";
+	</script>
+<%
 	} else {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('정보 수정 실패입니다.')");
-		script.println("history.back()");
-		script.println("</script>");
+%>
+	<script type="text/javascript">
+		alert("정보 수정 실패입니다.");
+		history.go(-1);
+	</script>
+<%
 	}
 %>
 </body>

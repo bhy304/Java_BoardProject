@@ -1,0 +1,22 @@
+@charset "UTF-8";
+/* 전체 페이지에 공통으로 들어가는 CSS 코드입니다. */
+
+/* reset */ 
+body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset, legend, p, select, table,
+th, td, tr, textarea, button, form {margin: 0; padding: 0;}
+
+a {color: #fff; text-decoration: none; font-weight: bold;}
+a:hover {color: #000;} 
+ 
+/* 폰트 초기화 */
+body, input, textarea, select, button, table 
+{font-family: 'Nanum Gothic', sans-serif; color: #222; font-size: 15px; line-height: 1.5;}
+
+/* header */
+#header { padding: 60px;  text-align: center; background: #999;}
+#header .logo {float:left; width:250px; text-transform: uppercase; }
+#header .logo a {font-size: 30px;} 
+#header .nav{float:right; width:600px; margin-top: 10px;}
+#header .nav li {float: left; width: 25%; text-align: center; list-style: none;}
+#header .nav li a {padding: 10px; display: block; font-size: 20px;}
+
