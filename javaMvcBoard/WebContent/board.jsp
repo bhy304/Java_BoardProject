@@ -14,6 +14,7 @@
 <style>
 /* 게시판 */
 #board_container {position: relative; overflow: hidden; width: 800px; margin: 50px auto 0; padding: 0;}
+#board_container h1 {text-align: center;}
 #board_container .row {background: #f8f8f8;}
 #board_container .row table {border: 1px solid black; width: 100%; text-align: center;}
 #board_container .row th,td {border: 1px solid black; height: 30px;}
@@ -42,7 +43,7 @@
 		<table>
 			<thead>
 				<tr>
-					<th>글번호</th>
+					<th>번호</th>
 					<th>제목</th>
 					<th>작성자</th>
 					<th>작성일</th>
@@ -56,7 +57,7 @@
 				%>
 				<tr>
 					<td><%= list.get(i).getBbsID() %></td>
-					<td><a href="boardview.jsp?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></a></td>
+					<td><a href="boardView.jsp?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></a></td>
 					<td><%= list.get(i).getUserID() %></td>
 					<td><%= list.get(i).getBbsDate().substring(0, 11) + list.get(i).getBbsDate().substring(11, 13) + "시" + list.get(i).getBbsDate().substring(14, 16)+ "분"%></td>
 
@@ -78,7 +79,7 @@
 			<%
 				}
 			%>
-		<a href="boardwrite.jsp" class="btn_right">글쓰기</a>
+		<a href="boardWrite.jsp" class="btn_right">글쓰기</a>
 	</div>
 </div>
 

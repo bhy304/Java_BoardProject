@@ -168,4 +168,46 @@ public class boardDAO {
 			DBUtil.MysqlDisConnection(rs, pstmt, conn);
 		} return null;	
 	}
+	
+	// 게시글 수정
+	public int update(int bbsID, String bbsTitle, String bbsContent) {
+		Connection conn = null;
+		PreparedStatement pstmt = null; 
+		String sql = "update board set bbsTitle = ?, bbsContent = ? where bbsID = ?";
+		System.out.println(sql);
+		try {
+			conn = DBUtil.MysqlConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, bbsTitle);
+			pstmt.setString(2, bbsContent);
+			pstmt.setInt(3, bbsID);
+			
+			return pstmt.executeUpdate(); // 쿼리문 성공시 0 이상의 값을 반환
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.MysqlDisConnection(null, pstmt, conn);
+		} return -1; // 데이터베이스오류
+	}
+	
+	// 게시글 삭제
+	public int delete(int bbsID) {
+		Connection conn = null;
+		PreparedStatement pstmt = null; 
+		String sql = "update board set bbsAvailable = 0 where bbsID = ?";
+		System.out.println(sql);
+		try {
+			conn = DBUtil.MysqlConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, bbsID);
+			
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.MysqlDisConnection(null, pstmt, conn);
+		} return -1; // 데이터베이스오류
+	}
 }

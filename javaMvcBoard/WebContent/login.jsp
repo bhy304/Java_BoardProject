@@ -11,6 +11,7 @@
 <style>
 /* 로그인 폼 */
 #login_container {position: relative;  width: 450px; margin: 150px auto 0; padding: 0;} 
+#login_container h1 {text-align: center;}
 #login_container .login_form {background-color: #f1f1f1; height: 300px;}
 #login_container .login_form  input {width: 100%; padding: 12px 20px; margin: 8px 0; display: inline-block; border: 1px solid #ccc; box-sizing: border-box;}
 #login_container .login_form  button {width: 100%; background-color: rgb(34, 8, 107); color: white; padding: 14px 20px;margin: 8px 0; border: none;}
@@ -28,7 +29,7 @@
         <form class="login_form" action="loginAction.jsp" method="post">
             
             <label for="userID"><b>아이디</b></label>
-        	<input type="text" id="userID" name="userID" placeholder="Enter UserID" value="<% if(session.getAttribute("userID")!=null) out.println(session.getAttribute("userID")); %>">
+        	<input type="text" id="userID" name="userID" placeholder="Enter UserID">
 
             <label for="userPassword"><b>비밀번호</b></label>
             <input type="password" id="userPassword" name="userPassword" placeholder="Enter UserPassword">

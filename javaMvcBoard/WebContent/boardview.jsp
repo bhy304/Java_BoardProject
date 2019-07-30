@@ -11,7 +11,7 @@
 <title>JSP 게시판 웹사이트</title>
 <!-- CSS Style -->
 <link rel="stylesheet" href="css/reset.css">
-<style type="text/css">
+<style>
 #view_container {position: relative;  overflow: hidden; width: 700px; height: 800px; margin: 150px auto 0; padding: 0;}
 #view_container h1 {margin: 15px 0; text-align: center;}
 #view_container .view_row {background: #f8f8f8;}
@@ -30,7 +30,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 <!-- 헤뉴 메뉴  -->
 <% 
-	String userID = null;
+ 	String userID = null;
 	if(session.getAttribute("userID") != null){
 		userID = (String) session.getAttribute("userID");
 	}
@@ -44,7 +44,7 @@
 		script.println("<script>");
 		script.println("alert('유효하지 않는 글입니다.')");
 		script.println("location.href = 'board.jsp'");
-		script.println("<script>");
+		script.println("</script>");
 	}
 	boardDTO board = new boardDAO().getBoard(bbsID);
 %>
@@ -53,7 +53,7 @@
 	<div class="view_row">		
 			<table class="view_table">
 			<tr>
-				<td class="title">글 제목</td>
+				<td class="title">제목</td>
 				<td class="content"><%= board.getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></td>
 			</tr>
 			<tr>
@@ -61,7 +61,7 @@
 				<td class="content"><%= board.getUserID() %></td>
 			</tr>
 			<tr>
-				<td class="title">작성일자</td>
+				<td class="title">작성일</td>
 				<td class="content"><%= board.getBbsDate().substring(0, 11) + board.getBbsDate().substring(11, 13) + "시" + board.getBbsDate().substring(14, 16)+ "분" %></td>
 			</tr>
 			<tr>
@@ -71,10 +71,11 @@
 			</table>
 			<input class="btn" type="submit" value="목록" onclick="javascript:location.href='board.jsp'">
 			<%
+				// 글 작성자는 글 수정과 글 삭제 가능
 				if(userID != null && userID.equals(board.getUserID())) {
 			%>
-					<a href="boardupdate.jsp?bbsID=<%= bbsID %>" class="btn_update">수정</a>
-					<a href="deleteAction.jsp?bbsID=<%= bbsID %>" class="btn_delete">삭제</a>
+					<a href="boardUpdate.jsp?bbsID=<%= bbsID %>" class="btn_update">수정</a>
+					<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="boardDeleteAction.jsp?bbsID=<%= bbsID %>" class="btn_delete">삭제</a>
 			<%
 				}
 			%>
